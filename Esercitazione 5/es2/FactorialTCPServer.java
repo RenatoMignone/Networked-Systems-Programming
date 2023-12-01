@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
 
+
+//a simple server thats handles communications without using concurrent programming with threads
 public class FactorialTCPServer {
     public static void main(String [] argv) {
         int n;
@@ -19,7 +21,7 @@ public class FactorialTCPServer {
 
                 n = inFromClient.readInt();
 
-                fact = factorial(n);
+                fact = factorial(n); //calls the static function of this class
 
                 outToClient.writeLong(fact);
             }
