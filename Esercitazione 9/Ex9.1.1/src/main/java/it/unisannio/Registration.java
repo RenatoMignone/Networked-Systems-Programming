@@ -7,31 +7,24 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.BufferedWriter;
-import java.io.Console;
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
-@WebServlet("/Registrate")
+@WebServlet("/Registration")
 public class Registration extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Some processing...
 
-        // Get the RequestDispatcher and forward the request
         RequestDispatcher dispatcher = request.getRequestDispatcher("./registration.html");
         dispatcher.forward(request, response);
     }
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve form parameters
-        firstName = request.getParameter("firstName");
-        lastName = request.getParameter("lastName");
-        email = request.getParameter("email");
-
-        // Write form data to a file
-        writeToFile(firstName, lastName, email);
+        
+    	writeToFile(request);
 
         // Set response content type
         response.setContentType("text/html");
@@ -43,27 +36,24 @@ public class Registration extends HttpServlet {
         out.println("<html>");
         out.println("<head><title>Registration Confirmation</title></head>");
         out.println("<body>");
-        out.println("<p>" + firstName + ", your registration has been executed correctly.</p>");
+        out.println("<p>" + request.getParameter("firstName") + ", your registration has been executed correctly.</p>");
         out.println("</body>");
         out.println("</html>");
     }
 
-    private void writeToFile(String firstName, String lastName, String email) throws IOException{
+    private void writeToFile(HttpServletRequest request) throws IOException{
         // Specify the path to the file where registration data will be stored
-        String filePath = getServletContext().getRealPath("./registration_data.txt");
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
-            // Append the registration data to the file
-            writer.write("First Name: " + firstName);
-            writer.newLine();
-            writer.write("Last Name: " + lastName);
-            writer.newLine();
-            writer.write("Email: " + email);
-            writer.newLine();
-            writer.newLine(); // Add an empty line for separation
-        }
-    
-    String firstName;
-    String lastName;
-    String email;
+        
+    		String filePath = "C:\\Users\\renat\\eclipse-workspace\\registrazioni.txt";
+        	File f = new File(filePath);
+        	FileOutputStream fos = new FileOutputStream(f);
+        	PrintStream ps = new PrintStream(fos);
+        	       
+        	ps.println("nome    :"+request.getParameter("firstName"));
+        	ps.println("cognome :"+request.getParameter("lastName"));
+        	ps.println("email   :"+request.getParameter("email"));
+        	ps.println("password:"+request.getParameter("password"));
+        	ps.close();         
+    }
+	    
 }

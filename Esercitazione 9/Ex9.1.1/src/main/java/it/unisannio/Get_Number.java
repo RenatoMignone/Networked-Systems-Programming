@@ -1,9 +1,8 @@
-package it.unisannio;
+ 	package it.unisannio;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,9 +24,6 @@ public class Get_Number extends HttpServlet {
     
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {    	
-
-        // Send the result to the browser
-
     }
     int Num;
 }

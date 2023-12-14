@@ -15,9 +15,6 @@ public class calculator extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Some processing...
-
-        // Get the RequestDispatcher and forward the request
         RequestDispatcher dispatcher = request.getRequestDispatcher("./calculator.html");
         dispatcher.forward(request, response);
     }
