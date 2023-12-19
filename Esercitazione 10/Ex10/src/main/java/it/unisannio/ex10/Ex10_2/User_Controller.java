@@ -12,10 +12,6 @@ import java.util.HashMap;
 public class User_Controller {
     private final HashMap<Integer, User> users = new HashMap<Integer,User>();
 
-    public User_Controller(){
-        users.put(1,new User("renato","mignone",1));
-        users.put(2,new User("cienz","altieri",2));
-    }
 
     //POST, crea un nuovo utente nella collezione
     @POST
