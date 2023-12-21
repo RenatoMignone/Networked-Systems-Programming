@@ -1,0 +1,38 @@
+<script type="application/javascript" src = "./script.js">
+</script>
+<head>
+    <meta charset="ISO-8859-1">
+     <title>Book Page</title>
+</head>
+
+<body>
+
+      <div id="book_request"> 
+          <h4>1) Insert the isbn code of the book you want to buy:
+              <input id="BookIsbn" type="text" maxlength="4" name="isbn" value=""> </input>
+              <input type="submit" value="Ok" onClick="handleBookRequest(BookIsbn.value)"> </input> </br>
+          </h4>
+          <p id="book"> </p> 
+      </div>
+      <div id="book_creation"> 
+          <br> 
+          <h4>2) Insert the data of the book you wish to create:
+          <br>ISBN:
+              <input id="isbn" type="text" maxlength="4" name="isbn" value=""> </input>
+          <br>Title:
+              <input id="bookTitle" type="text" name="title" value=""> </input>
+          <br>Author:
+              <input id="author" type="text" name="author" value=""> </input>
+          <br>
+              <input type="submit" value="Invia" onClick="handleBookCreation(isbn.value, bookTitle.value, author.value)"> </input> </br>
+          </h4>
+          <p id="bookCreated"> </p>
+      </div>
+      <div id="book_list">
+          <br> 
+          <h4>3) Do you want to get the whole books list ?
+              <input type="submit" value="Recupera" onClick="handleBooksList()"> </input> </br>
+          </h4>
+          <p id="booksList"> </p>
+      </div>
+</body>

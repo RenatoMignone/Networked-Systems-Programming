@@ -1,5 +1,4 @@
-package it.unisannio.ex10.Ex10_3;
-
+package it.unisannio.clienttester11.Ex10_3;
 public class Order {
     private int order_id;
     private String isbn;

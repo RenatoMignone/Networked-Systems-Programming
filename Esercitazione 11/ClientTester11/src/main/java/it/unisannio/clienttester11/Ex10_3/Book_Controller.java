@@ -1,5 +1,4 @@
-package it.unisannio.ex10.Ex10_3;
-
+package it.unisannio.clienttester11.Ex10_3;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
@@ -16,6 +15,10 @@ import java.util.List;
 public class Book_Controller {
     private final HashMap<String,Book> books = new HashMap<>();
     private final HashMap<String,List<Order>> orders = new HashMap<>();
+
+    public Book_Controller(){
+        books.put("1000",new Book("1000","r","r"));
+    }
 
     @POST
     public Response createBook(Book book){
