@@ -3,9 +3,13 @@ package it.unisannio.eshop.eshop.Service;
 import it.unisannio.eshop.eshop.Database.Books_Repository;
 import it.unisannio.eshop.eshop.Database.User_Repository;
 import it.unisannio.eshop.eshop.Entities.Book;
-import jakarta.ws.rs.core.Response;
+import it.unisannio.eshop.eshop.Entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,17 +24,18 @@ public class Admin_service {
         this.books_repo = books_repo;
     }
 
-    public Response createBoook(Book book){
-        books_repo.save(book);
-        URI uri = null;
-        try{
-            uri = new URI("Admin/"+book.getIsbn());
-        }catch(URISyntaxException ignored){}
-        return Response.created(uri).build();
+    public ResponseEntity<?> createBoook(Book book){
+        if(books_repo.findByIsbn(book.getIsbn())==null)
+        {return ResponseEntity.status(HttpStatus.CREATED).body(books_repo.save(book));}
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("isbn already exists");
     }
 
     public void deleteBook(String isbn){
         Book book = books_repo.findByIsbn(isbn);
         books_repo.deleteById(book.getId());
     }
+
+//    public void createUser(UserEntity user){
+//        user_repo.save(user);
+//    }
 }
