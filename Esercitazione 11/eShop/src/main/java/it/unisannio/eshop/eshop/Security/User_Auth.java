@@ -8,14 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 import it.unisannio.eshop.eshop.Database.User_Repository;
 import it.unisannio.eshop.eshop.Entities.UserEntity;
 
 import java.util.HashSet;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -32,6 +30,7 @@ public class User_Auth implements UserDetailsService { //voglio creare un serviz
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
             for (String authority : user.getRole()) {
                 grantedAuthorities.add(new SimpleGrantedAuthority(authority));
+                System.out.println(user.getEmail());
                 System.out.println(authority+" "+user.getRole());
             }
 

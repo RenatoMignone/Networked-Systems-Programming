@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore eShop</title>
+    <link rel="stylesheet" type="text/css" href="CSS/customer.css">
+<!--    <script src="./customer_script.js" defer></script>-->
+    <script src="JS/customer_script.js"></script>
+
+</head>
+<body>
+    <h1 >Welcome to the Bookstore eShop</h1>
+
+    <section id='getAllBooks'>
+        <h2>Get the full list of books</h2>
+        <button onclick="getBooks()">Get Books</button>
+    </section>
+
+
+    <section id="getBookDetail">
+        <h2>Get the details of a specific book</h2>
+        <form onsubmit="event.preventDefault();">
+            <label for="bookId">Enter Book ID:</label>
+            <input type="text" id="bookId" name="bookId" required>
+            <button onclick="getBookDetails(document.getElementById('bookId').value)">Get Book Details</button>
+        </form>
+
+    </section>
+
+    <section id="newOrder">
+        <h2>Submit an order for buying a book</h2>
+        <form onsubmit="event.preventDefault();">
+            <label for="bookIdOrder">Enter Book ID:</label>
+            <input type="text" id="bookIdOrder" name="bookIdOrder" required>
+            <button onclick="submitOrder(document.getElementById('bookIdOrder').value)">Submit Order</button>
+        </form>
+    </section>
+
+    <section id="OrderDetails">
+        <h2>Get the details of an order</h2>
+        <form onsubmit="event.preventDefault();">
+            <label for="orderId">Enter Order ID:</label>
+            <input type="text" id="orderId" name="orderId" required>
+            <button onclick="getOrderDetails(document.getElementById('orderId').value)">Get Order Details</button>
+        </form>
+    </section>
+</body>
+</html>
