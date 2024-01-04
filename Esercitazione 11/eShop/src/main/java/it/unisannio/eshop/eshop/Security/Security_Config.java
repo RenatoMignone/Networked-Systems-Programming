@@ -1,15 +1,18 @@
 package it.unisannio.eshop.eshop.Security;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 
@@ -47,9 +50,10 @@ public class Security_Config {
     //Vado a istanziare una catena di filtri attraverso la quale le nostre chiamate http verranno autorizzate ad accedere al server
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable);
-//                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable);
 
+//        http.formLogin(login -> login.);
 
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/eShop/Customer/**").permitAll());
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/eShop/login/**").permitAll());
@@ -69,9 +73,11 @@ public class Security_Config {
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/CSS/admin.css").hasAuthority("ADMIN"));
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/JS/admin_script.js").hasAuthority("ADMIN"));
 
-        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/eShop/login/**").permitAll());
+        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/?continue/").permitAll());
 
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/favicon.ico").permitAll());
+
+        http.formLogin(Customizer.withDefaults());
 
         http.authorizeHttpRequests((requests) ->requests.requestMatchers("/eShop/Admin/**").hasAuthority("ADMIN")).httpBasic(Customizer.withDefaults());
 
