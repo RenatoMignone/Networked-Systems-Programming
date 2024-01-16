@@ -24,7 +24,7 @@ public class FactorialTCPServer1 {
     public void start() throws IOException {
         while(true) {
             Socket connectionSocket = welcomeSocket.accept(); //calls the accept to create a new socket to communicate with the clients that wants to communicate
-            FactorialConcurrentServerHandler fc = new FactorialConcurrentServerHandler(connectionSocket); //instantiates an object of FactorialConcurrentServerHandler's class 
+            FactorialConcurrentServerHandler fc = new FactorialConcurrentServerHandler(connectionSocket); //instantiates an object of FactorialConcurrentServerHandler class 
             fc.handle(); //uses the method of this class to handle the request from the remote client
         }
 

@@ -3,16 +3,10 @@ package it.unisannio.eshop.eshop.Service;
 import it.unisannio.eshop.eshop.Database.Books_Repository;
 import it.unisannio.eshop.eshop.Database.User_Repository;
 import it.unisannio.eshop.eshop.Entities.Book;
-import it.unisannio.eshop.eshop.Entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @Service
 public class Admin_service {
@@ -35,7 +29,4 @@ public class Admin_service {
         books_repo.deleteById(book.getId());
     }
 
-//    public void createUser(UserEntity user){
-//        user_repo.save(user);
-//    }
 }

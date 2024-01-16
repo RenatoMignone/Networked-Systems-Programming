@@ -24,14 +24,6 @@ class DatagramClient {
         System.out.println("Inserisci il secondo intero: ");
 
         b = inFromUser.nextInt();
-
-        // DataOutputStream bufToServer =  new DataOutputStream(new ByteArrayOutputStream());;
-        // DataOutputStream shortStreamToServer = new DataOutputStream(bufToServer);
-
-        // shortStreamToServer.writeInt(a);
-        // shortStreamToServer.writeInt(b);
-
-        // sendData = bufToServer.toByteArray();
         
 
         //creo bytebuffer per creare un buffer e metterci dentro gli interi

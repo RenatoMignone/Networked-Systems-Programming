@@ -34,6 +34,7 @@ int main(int argc, char* argv[]) {
   serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
   /* Assign the transport address to the local socket (server) */
+  //effettuo l'operazione di bind della socket, che ci consente si assegnare una socket al server
   bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
   clientAddrLen = sizeof(clientAddr);
 
@@ -49,6 +50,8 @@ int main(int argc, char* argv[]) {
       /* The status variable (visits) is incremented and the response message is built */
       visits++;
       memset(buf, 0, sizeof(buf));
+
+      //inserisco i miei dati all'interno del buffer per poi spedirli al client
       (*(int *)buf) = visits;
       /* The response message has been produced */ 
       

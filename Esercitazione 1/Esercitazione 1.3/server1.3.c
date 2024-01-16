@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
       /* The status variable (visits) is incremented and the response message is built */
       visits++;
 
-      sprintf(buf + strlen(buf),",this server has been contacted %d time%s",visits, visits==1 ? "." : "s.");
+      sprintf(buf + strlen(buf)-1,"%s,this server has been contacted %d time%s",visits, visits==1 ? "." : "s.");
       
       /* Send the data by copying the data in buf to the system */
       sendto(serverSocket, buf, sizeof(buf), 0, (struct sockaddr *)&clientAddr, clientAddrLen);

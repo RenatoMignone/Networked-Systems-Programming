@@ -8,11 +8,14 @@
     }
 
     h1 {
-        color: #0066cc;
+        color: darkred;
     }
+
 
     section {
         margin-bottom: 20px;
+        margin-left: 150px;
+        margin-right: 150px;
         padding: 20px;
         background-color: #fff;
         border-radius: 8px;
@@ -24,6 +27,27 @@
         flex-direction: column;
         max-width: 300px;
         margin: 0 auto;
+    }
+
+    #AllButton{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    #getAllBooks{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+    #Title{
+        text-align: center;
     }
 
     label {
@@ -39,7 +63,7 @@
 
     button {
         padding: 10px;
-        background-color: #0066cc;
+        background-color: darkred;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -47,5 +71,5 @@
     }
 
     button:hover {
-        background-color: #0056b3;
+        background-color: darkred;
     }

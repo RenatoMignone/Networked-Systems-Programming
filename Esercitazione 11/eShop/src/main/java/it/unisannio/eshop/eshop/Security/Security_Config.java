@@ -1,6 +1,8 @@
 package it.unisannio.eshop.eshop.Security;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,19 +14,16 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-
-
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import java.io.IOException;
 
-
-import static org.springframework.security.config.Customizer.withDefaults;
-
-@Configuration //File di configurazione
-@EnableWebSecurity //dove metteremo le nostre configurazioni di sicurezza
+@Configuration
+@EnableWebSecurity
 @Import(User_Auth.class)
 public class Security_Config {
     private final User_Auth userDetailService;
@@ -47,13 +46,22 @@ public class Security_Config {
     }
 
     @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new AuthenticationSuccessHandler() {
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                response.sendRedirect("/customer.html");
+            }
+        };
+    }
+
+    @Bean
     //Vado a istanziare una catena di filtri attraverso la quale le nostre chiamate http verranno autorizzate ad accedere al server
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable);
 
-//        http.formLogin(login -> login.);
 
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/eShop/Customer/**").permitAll());
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/eShop/login/**").permitAll());
@@ -73,11 +81,9 @@ public class Security_Config {
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/CSS/admin.css").hasAuthority("ADMIN"));
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/JS/admin_script.js").hasAuthority("ADMIN"));
 
-        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/?continue/").permitAll());
-
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/favicon.ico").permitAll());
 
-        http.formLogin(Customizer.withDefaults());
+        http.formLogin(Customizer.withDefaults()).formLogin(login -> login.successHandler(myAuthenticationSuccessHandler()));
 
         http.authorizeHttpRequests((requests) ->requests.requestMatchers("/eShop/Admin/**").hasAuthority("ADMIN")).httpBasic(Customizer.withDefaults());
 

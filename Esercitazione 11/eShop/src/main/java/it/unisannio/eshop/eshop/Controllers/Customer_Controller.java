@@ -5,9 +5,6 @@ import it.unisannio.eshop.eshop.Service.Customer_Service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-
-//@CrossOrigin(origins = "**")
 @RestController
 @RequestMapping("eShop/Customer")
 public class Customer_Controller {

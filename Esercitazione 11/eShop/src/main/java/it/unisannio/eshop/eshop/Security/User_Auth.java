@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class User_Auth implements UserDetailsService { //voglio creare un servizio che mi restituisca un utente, ma non uso quella di spring, la personalizzo
+public class User_Auth implements UserDetailsService {
     private final User_Repository userRepository;
     @Autowired
     public User_Auth(User_Repository userRepository) {
@@ -26,7 +26,7 @@ public class User_Auth implements UserDetailsService { //voglio creare un serviz
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findUserByEmail(email); //.orElseThrow(() -> new UsernameNotFoundException("Username non valido"));
+        UserEntity user = userRepository.findUserByEmail(email);
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
             for (String authority : user.getRole()) {
                 grantedAuthorities.add(new SimpleGrantedAuthority(authority));

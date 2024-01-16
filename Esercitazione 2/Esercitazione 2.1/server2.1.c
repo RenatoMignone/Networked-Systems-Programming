@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
 
 
   /* Create a socket for stream oriented communication */
+  //con SOCK_STREAM definiamo che il protocollo di trasporto stavolta è TCP
   sd = socket(PF_INET, SOCK_STREAM, 0);
   if (sd < 0) {
       fprintf(stderr, "socket creation failed\n");
@@ -64,6 +65,7 @@ int main(int argc, char *argv[]) {
   while (1) {
       
       /* Extract a connection request from the queue and create a new socket */
+      //tramite la funzione accept, accetto la connessione da parte di un server (l'handshake TCP)
       if ( (sd2=accept(sd, (struct sockaddr *)&cad, &alen)) < 0) {
       	fprintf(stderr, "accept failed\n");
         exit(1);

@@ -1,10 +1,3 @@
-/*
- * clientDgram.c
- *
- *  Modified on: October 23, 2023
- *      Author: zimeo
- */
-
 /*#include <sys/types.h>*/
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -32,6 +25,9 @@ int main(int argc, char *argv[]) {
   }
   
   /* Create a socket for datagram oriented communication */
+  //PF_INET, specifica l'utilizzo di un IPv4
+  //SOCK_DGRAM, specifica l'utilizzo di datagrams, quindi del protocollo UDP di trasporto
+  //0 indica il protocollo default, ovvero UDP
   clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
 
   /* Clean the memory area that will store the transport address of the remote socket (server) */
@@ -50,11 +46,13 @@ int main(int argc, char *argv[]) {
   /* Send the data (no useful data is present in the message) */
   sendto(clientSocket, buf, sizeof(buf), 0, (struct sockaddr *)&serverAddr, serverAddrLen);
 
+ //pulisce la memoria del buffer
   memset(buf, 0, sizeof(buf));
   
   /* Receive the data from the server; we assume that the data are encapsulated in a single message */
   recvfrom(clientSocket, buf, sizeof(buf), 0, (struct sockaddr *)&serverAddr, &serverAddrLen);
 
+  //stampiamo il numero di volte in cui il server è stato contattato mantenendo uno stato al suo interno per il client
   printf("This server has been contacted %d time%s\n", *(int *)buf, *(int *)buf==1 ? "." : "s.");
 
   close(clientSocket);

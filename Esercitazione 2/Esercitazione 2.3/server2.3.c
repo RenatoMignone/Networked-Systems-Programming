@@ -72,9 +72,11 @@ int main(int argc, char *argv[]) {
       
       visits++;
 
+      memset(buf,0,sizeof(buf));
+
       read(sd2,buf,sizeof(buf));
 
-      sprintf(buf + strlen(buf),",you are the %d° user of this server",visits);
+      sprintf(buf + strlen(buf)-1,",you are the %d° user of this server",visits);
 	
       /* Write the response message in the network channel */
       write(sd2, buf, sizeof(buf));

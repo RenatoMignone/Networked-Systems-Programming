@@ -6,7 +6,8 @@ function getBooks() {
         if (xhr.status === 200) {
             let booksArray = JSON.parse(xhr.responseText);
 
-            let element = document.getElementById("getAllBooks");
+            let element = document.getElementById("AllBooks");
+            element.innerHTML = "";
             let newDiv = document.createElement("div");
             let text = document.createTextNode("Here is the full list of books: ");
             newDiv.appendChild(text);
@@ -31,7 +32,9 @@ function getBookDetails(id) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             let book = JSON.parse(xhr.responseText);
-            let element = document.getElementById("getBookDetail");
+            let element = document.getElementById("BookDetails");
+            element.innerHTML = "";
+
             let newDiv = document.createElement("div");
             let text = document.createTextNode("Here are the details of the book specified: ");
             newDiv.appendChild(text);
