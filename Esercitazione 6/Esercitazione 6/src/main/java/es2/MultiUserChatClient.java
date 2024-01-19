@@ -2,6 +2,7 @@ package es2;
 
 import java.io.IOException;
 import java.net.Socket;
+import es2.ProtocolHandler;
 
 public class MultiUserChatClient {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ public class MultiUserChatClient {
     }
 
     public void go() throws IOException{
-        ProtocolHandler ph = (ProtocolHandler) new MultiUserChatClientHandler(clientSocket);
+        MultiUserChatClientHandler ph = new MultiUserChatClientHandler(clientSocket);
         ph.handle();
     }
 

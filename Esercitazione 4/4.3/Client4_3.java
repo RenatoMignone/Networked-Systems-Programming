@@ -19,7 +19,6 @@ class Client4_3{
         Socket clientSocket = new Socket("127.0.0.1", 6789); //creiamo la socket di rete
 
         //DataOutputStream e DataInputStream sono dei decoratori, che implementano il pattern decorator
-        //che 
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         DataInputStream inFromServer = new DataInputStream(clientSocket.getInputStream());
 

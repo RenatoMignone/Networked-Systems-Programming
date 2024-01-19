@@ -83,7 +83,8 @@ public class Security_Config {
 
         http.authorizeHttpRequests((requests) -> requests.requestMatchers("/favicon.ico").permitAll());
 
-        http.formLogin(Customizer.withDefaults()).formLogin(login -> login.successHandler(myAuthenticationSuccessHandler()));
+//        http.formLogin(Customizer.withDefaults()).formLogin(login -> login.successHandler(myAuthenticationSuccessHandler()));
+
 
         http.authorizeHttpRequests((requests) ->requests.requestMatchers("/eShop/Admin/**").hasAuthority("ADMIN")).httpBasic(Customizer.withDefaults());
 

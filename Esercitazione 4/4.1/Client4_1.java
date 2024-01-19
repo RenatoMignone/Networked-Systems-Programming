@@ -11,6 +11,7 @@ class clientnuovo{
 
         Socket clientSocket = new Socket("127.0.0.1", 6789);
 
+        //definisco l'output stream e l'input stream per la comunicazione TCP
         DataOutputStream outToServer = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
         DataInputStream inFromServer = new DataInputStream (new BufferedInputStream(clientSocket.getInputStream()));
 
@@ -25,6 +26,7 @@ class clientnuovo{
 
         b = inFromUser.nextInt();
 
+        //inoltro i due interi al server
         outToServer.writeInt(a);
         outToServer.writeInt(b);
         outToServer.flush();

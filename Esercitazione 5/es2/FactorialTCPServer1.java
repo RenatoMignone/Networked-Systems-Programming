@@ -5,7 +5,6 @@ import java.net.*;
 import java.io.IOException;
 
 //questo server a diffenza del precedente gestisce la comunicazione dei client con differenti threads 
-
 public class FactorialTCPServer1 {
 
     public static void main(String[] args) {
